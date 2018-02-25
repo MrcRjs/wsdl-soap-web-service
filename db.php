@@ -2,13 +2,19 @@
 class TiendaDB
 {
   public $conn;
-  private $servername = getenv('SERVERNAME');
-  private $username = getenv('DB_USER');
-  private $password = getenv('DB_PASS');
-  private $dbname =  getenv('DB_NAME');
+  private $servername;
+  private $username;
+  private $password;
+  private $dbname;
 
+  function __construct() {
+    $servername = getenv("SERVERNAME");
+    $username = getenv("DB_USER");
+    $password = getenv("DB_PASS");
+    $dbname =  getenv("DB_NAME");
+  }
 
-  public function getConnection(){
+  public function getConnection() {
     $this->conn = null;
     try {
       $this->conn = new PDO("mysql:host=" . $this->servername . ";dbname=" . $this->dbname, $this->username, $this->password);
